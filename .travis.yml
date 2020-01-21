@@ -1,4 +1,5 @@
 language: java
+jdk: openjdk8
 install: 
 - git config --global user.name "spoon-bot"
 
