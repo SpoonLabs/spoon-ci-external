@@ -1,27 +1,11 @@
 language: java
 jdk: openjdk8
-install: 
-- git config --global user.name "spoon-bot"
 
 script:
-- git clone https://github.com/INRIA/spoon.git
-- cd spoon
-- mvn package # create jar and run tests
-- groovy -cp target/spoon-core-*-jar-with-dependencies.jar ../list-public-methods.groovy > spoon-public-methods.txt
-- groovy -cp target/spoon-core-*-jar-with-dependencies.jar ../list-public-classes.groovy > spoon-public-classes.txt
-- COMMIT=`git log --format="%H" -n 1`
-- cd ..
-- git clone https://github.com/SpoonLabs/spoon-ci-data.git
-- cd spoon-ci-data
-- git remote rm origin
-- git remote add origin https://spoon-bot:$GITHUB_TOKEN@github.com/SpoonLabs/spoon-ci-data.git
-- cp -r ../spoon/target/surefire-reports/ .
-- git add surefire-reports/*.xml
-- cp ../spoon/spoon-public-methods.txt .
-- cp ../spoon/spoon-public-classes.txt .
-- git commit -m $COMMIT --allow-empty -a
-- git push origin master
+- ./push-master-to-spoon-ci-external.sh
+- ./push-branch-to-spoon-ci-external.sh
 
 env:
   global:
+    # sets env variable $GITHUB_TOKEN (from user spoon-bot)
     secure: ZhJ3Z6YeSiFqTyKPKvBRjabPzKR+wWNvSnll2BTQQO2KxSjfJs4Iaj6rSnBtQG5rcS9E1fIhmOShIa3eEayl0WD/FaZSVC2bCrzkJ0rQNNEA+ppCTtuBzMv7NArd+luJ/jBeFd/RSaxLuJz/KPU8CvGvEsbtzhHZ735dU2GDQfYRwIfWLz5ke8N7iYZjdfa6emgO5YJwFgEZRTDr8agluDq1TMn2etMSmxZ4Sa4uPyHbBCGJtEYTuXIt2E/szM39Sn0TzHtR1IULgIQBF6tKsIGFLuMRJu3UtCXmxDCCeURi7TVsUr12S88Td+vrMscyqWIz56Fn//My/NK3hkKALwtjDg3Rv9gzrpPrSvcNef5Fe4oLvGO4NfPaBGrBL9bRUIjT2B6yjS9Wl3RDHgFkDQuLX3zMyvjkvrGCtafI+pclBU02bNxWByA2B80xcEG2VHwTxnwefrLv1UwQOUx5iErQaYnYPnEcihM4O31XY+xMknPZ1jEr3SGkX1XG0Q1JxdKbtFF1aQOOHTODAhnZStt4x3i4i6TJW1KWj9vA3RdbSQ2ifCgm30MjkIE3a7esizolVIXm8DJ0O8M0m4oV/PvHRjRpgO7dxhEuFctEPsA9AzCJFOSpzyhXPkYnJVXhrYJGqGgKCjiP5W/LhZYwAcnYC0q+e0QbkXMMVYJRDzs=
