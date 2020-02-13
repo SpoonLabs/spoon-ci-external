@@ -35,7 +35,9 @@ do
     if git ls-remote --exit-code --heads origin branch-$COMMIT; then cd ..; continue; fi
 
     # creating a specific branch for this commit from the empty branch
-    git checkout -b branch-$COMMIT
+#     git checkout empty # we start from the empty branch
+#     git checkout -b branch-$COMMIT
+    git checkout --orphan branch-$COMMIT
 
     cp -r ../target/surefire-reports/ .
     git add surefire-reports/*.xml
