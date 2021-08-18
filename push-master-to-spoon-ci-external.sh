@@ -24,7 +24,7 @@ fi
 
 # otherwise we proceed
 cd ../spoon
-cp ./chore/travis/logback.xml src/main/java
+cp ./chore/logback.xml src/main/java
 mvn -q package # create jar and run tests
 groovy -cp target/spoon-core-*-jar-with-dependencies.jar ../list-public-methods.groovy > spoon-public-methods.txt
 groovy -cp target/spoon-core-*-jar-with-dependencies.jar ../list-public-classes.groovy > spoon-public-classes.txt
