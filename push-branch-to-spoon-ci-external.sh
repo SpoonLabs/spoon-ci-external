@@ -43,7 +43,7 @@ do
     git add surefire-reports/*.xml
 
     # save the Jacoco data
-    cp -r ../target/jacoco.exec / .
+    cp -r ../target/jacoco.exec .
     git add jacoco.exec
 
     # list API elements
