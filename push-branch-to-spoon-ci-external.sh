@@ -8,7 +8,7 @@ git config --global user.name "spoon-bot"
 rm -rf spoon
 git clone https://github.com/INRIA/spoon.git
 cd spoon
-cp ./chore/travis/logback.xml src/main/java
+cp ./chore/logback.xml src/main/java
 
 # preparing the data repo
 git clone --single-branch --branch empty https://github.com/SpoonLabs/spoon-ci-data.git
